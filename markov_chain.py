@@ -47,7 +47,7 @@ class markov_chain:
       text = ""
       for _ in range(steps):
         text += self.state_labels[current_state]
-        current_state = self.choose_state(current_state)
+        current_state = self.__choose_state(current_state)
       
       return text
     
@@ -55,7 +55,7 @@ class markov_chain:
       raise Exception("State label should be set with the constructor for generating text.")
   
   
-  def choose_state(self, state):
+  def __choose_state(self, state):
     """ Function that returns the number of the chosen state """
     distr = self.tpm[state]
     chosen_state = np.random.choice(self.n_states, 1, p=distr)[0]
